@@ -38,24 +38,45 @@ function setupCardsVisibility() {
   const checkDeviceTypesScreenSize = () => {
     const width = window.innerWidth;
     if (width < 1020) {
-      deviceTypeItems.forEach(item => item.classList.remove('device-types__item--hidden'));
+      deviceTypeItems.forEach(item => {
+        item.classList.remove('device-types__item--hidden');
+        item.style.display = 'flex';
+      });
       deviceTypesShowAll.style.display = 'none';
       deviceTypesHideAll.style.display = 'none';
     } else if (width < 1120) {
       deviceTypeItems.forEach((item, index) => {
-        item.classList.toggle('device-types__item--hidden', index >= 2);
+        if (index >= 2) {
+          item.classList.add('device-types__item--hidden');
+          item.style.display = 'none';
+        } else {
+          item.classList.remove('device-types__item--hidden');
+          item.style.display = 'flex';
+        }
       });
       deviceTypesShowAll.style.display = 'flex';
       deviceTypesHideAll.style.display = 'none';
     } else if (width < 1360) {
       deviceTypeItems.forEach((item, index) => {
-        item.classList.toggle('device-types__item--hidden', index >= 3);
+        if (index >= 3) {
+          item.classList.add('device-types__item--hidden');
+          item.style.display = 'none';
+        } else {
+          item.classList.remove('device-types__item--hidden');
+          item.style.display = 'flex';
+        }
       });
       deviceTypesShowAll.style.display = 'flex';
       deviceTypesHideAll.style.display = 'none';
     } else {
       deviceTypeItems.forEach((item, index) => {
-        item.classList.toggle('device-types__item--hidden', index >= 4);
+        if (index >= 4) {
+          item.classList.add('device-types__item--hidden');
+          item.style.display = 'none';
+        } else {
+          item.classList.remove('device-types__item--hidden');
+          item.style.display = 'flex';
+        }
       });
       deviceTypesShowAll.style.display = 'flex';
       deviceTypesHideAll.style.display = 'none';
@@ -80,7 +101,10 @@ function setupCardsVisibility() {
   // Обработчики для видов техники
   if (deviceTypesShowAll && deviceTypesHideAll) {
     deviceTypesShowAll.addEventListener('click', () => {
-      deviceTypeItems.forEach(item => item.classList.remove('device-types__item--hidden'));
+      deviceTypeItems.forEach(item => {
+        item.classList.remove('device-types__item--hidden');
+        item.style.display = 'flex';
+      });
       deviceTypesShowAll.style.display = 'none';
       deviceTypesHideAll.style.display = 'flex';
     });
